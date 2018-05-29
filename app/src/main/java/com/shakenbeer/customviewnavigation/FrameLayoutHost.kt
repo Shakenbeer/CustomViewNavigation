@@ -12,8 +12,6 @@ class FrameLayoutHost @JvmOverloads constructor(
 
     private val mNavController = NavController(context)
 
-
-
     override fun getNavController(): NavController {
         return mNavController
     }

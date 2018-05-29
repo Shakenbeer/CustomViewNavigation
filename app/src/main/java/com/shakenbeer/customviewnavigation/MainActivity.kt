@@ -11,7 +11,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val customViewNavigator = CustomViewNavigator(container)
-        val navController = Navigation.findNavController(this, R.id.container)
-        navController.navigatorProvider.addNavigator(customViewNavigator)
+        //TODO make this work
+        //val navController = Navigation.findNavController(container)
+        container.navController.navigatorProvider.addNavigator(customViewNavigator)
+        container.navController.navigate(R.id.start)
     }
 }
