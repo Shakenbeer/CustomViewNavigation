@@ -12,8 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val customViewNavigator = CustomViewNavigator(container)
         //TODO make this work
-        //val navController = Navigation.findNavController(container)
-        container.navController.navigatorProvider.addNavigator(customViewNavigator)
-        container.navController.navigate(R.id.start)
+        val navController = Navigation.findNavController(container)
+        navController.navigatorProvider.addNavigator(customViewNavigator)
     }
 }
