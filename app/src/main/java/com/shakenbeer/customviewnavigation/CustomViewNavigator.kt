@@ -16,12 +16,13 @@ import java.util.*
 @Navigator.Name("custom_view")
 class CustomViewNavigator(private val container: ViewGroup) : Navigator<CustomViewNavigator.Destination>() {
 
-    private val stack: Deque<Int> = LinkedList()
+    private val stack: Deque<Pair<Int, Int>> = LinkedList()
 
     override fun navigate(destination: Destination, args: Bundle?, navOptions: NavOptions?) {
         val layoutId = destination.layoutId
-        stack.push(layoutId)
+        stack.push(Pair(destination.id, layoutId))
         replaceView(layoutId)
+        dispatchOnNavigatorNavigated(destination.id, BACK_STACK_DESTINATION_ADDED)
     }
 
     private fun replaceView(layoutId: Int) {
@@ -36,7 +37,9 @@ class CustomViewNavigator(private val container: ViewGroup) : Navigator<CustomVi
 
     override fun popBackStack(): Boolean {
         return if (stack.isNotEmpty()) {
-            replaceView(stack.pop())
+            stack.pop()
+            replaceView(stack.peek().second)
+            dispatchOnNavigatorNavigated(stack.peek().first, BACK_STACK_DESTINATION_POPPED)
             true
         } else {
             false
@@ -51,7 +54,6 @@ class CustomViewNavigator(private val container: ViewGroup) : Navigator<CustomVi
             super.onInflate(context, attrs)
             context.withStyledAttributes(attrs, R.styleable.CustomViewNavigator, 0, 0, {
                 layoutId = getResourceId(R.styleable.CustomViewNavigator_layoutId, 0)
-                recycle()
             })
         }
     }

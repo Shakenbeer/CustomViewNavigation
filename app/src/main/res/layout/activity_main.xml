@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.shakenbeer.customviewnavigation.FrameLayoutHost
+    <com.shakenbeer.customviewnavigation.NavHostFrame
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
-
-    </com.shakenbeer.customviewnavigation.FrameLayoutHost>
+        app:navGraph="@navigation/navigation_graph_example"
+        tools:context=".MainActivity"/>
 </FrameLayout>

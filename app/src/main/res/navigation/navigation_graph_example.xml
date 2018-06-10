@@ -2,9 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/start">
+    app:startDestination="@id/start">
     <custom_view
         android:id="@+id/start"
         app:layoutId="@layout/view_start"
         tools:layout="@layout/view_start"/>
+    <custom_view
+        android:id="@+id/stage_one"
+        app:layoutId="@layout/view_stage_one"
+        tools:layout="@layout/view_stage_one"/>
+    <custom_view
+        android:id="@+id/stage_two"
+        app:layoutId="@layout/view_stage_two"
+        tools:layout="@layout/view_stage_two"/>
 </navigation>

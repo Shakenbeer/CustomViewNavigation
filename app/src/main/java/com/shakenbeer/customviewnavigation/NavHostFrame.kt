@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import androidx.core.content.withStyledAttributes
 import androidx.navigation.NavController
 import androidx.navigation.NavHost
 import androidx.navigation.Navigation
 
 
-class FrameLayoutHost @JvmOverloads constructor(
+class NavHostFrame @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr), NavHost {
 
@@ -18,11 +19,15 @@ class FrameLayoutHost @JvmOverloads constructor(
 
     init {
         Navigation.setViewNavController(this, mNavController)
+        val customViewNavigator = CustomViewNavigator(this)
+        mNavController.navigatorProvider.addNavigator(customViewNavigator)
+        context.withStyledAttributes(attrs, R.styleable.NavHostFrame, 0, 0, {
+            val graphId = getResourceId(R.styleable.NavHostFrame_navGraph, 0)
+            mNavController.setGraph(graphId)
+        })
     }
 
-    override fun getNavController(): NavController {
-        return mNavController
-    }
+    override fun getNavController() = mNavController
 
     override fun onSaveInstanceState(): Parcelable {
         return Bundle().apply {
@@ -45,4 +50,3 @@ class FrameLayoutHost @JvmOverloads constructor(
         const val KET_NAV_CONTROLLER_STATE = "navControllerState"
     }
 }
-

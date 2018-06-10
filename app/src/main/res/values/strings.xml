@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CusomViewNavigation</string>
+    <string name="stage_one_title">Stage One is here!</string>
+    <string name="stage_two_button">Stage Two Go!</string>
+    <string name="stage_two_title">Stage Two is here!</string>
+    <string name="start_title">Start is here!</string>
+    <string name="stage_one_button">Stage One Go!</string>
 </resources>

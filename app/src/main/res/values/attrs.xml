@@ -3,4 +3,7 @@
     <declare-styleable name="CustomViewNavigator">
         <attr name="layoutId" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="NavHostFrame">
+        <attr format="reference" name="navGraph"/>
+    </declare-styleable>
 </resources>
